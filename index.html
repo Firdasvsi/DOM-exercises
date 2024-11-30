@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #product-list {
+            list-style-type: none;
+        }
+
+        #product-list li {
+            margin: 10px 0;
+        }
+
+        #cart {
+            list-style-type: none;
+            margin-top: 20px;
+        }
+
+        #cart li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 5.4 Практика по теме «Создание элементов» -->
+    <!-- Описание
+    В этом курсе мы предусмотрели опциональные мини-задания для самостоятельной работы. 
+    Их не нужно сдавать на проверку. Нажав на кнопку внизу страницы, вы найдёте эталонное решение. 
+    Постарайтесь решить задание самостоятельно, а подсказку использовать для самопроверки или при возникновении вопроса.
+    В предыдущем видео вы познакомились с созданием новых элементов.
+    В этом задании вам необходимо в блоке HTML добавить <div class=”content”></div>
+    Затем с помощью JavaScript создайте заголовок <h2> и параграф <p> и добавьте эти элементы в  <div class=”content”></div> -->
+    <div class="content1"></div> <!-- Поменял имя класса на content1 -->
+    <script>
+        const parent1 = document.querySelector('.content1');
+        const heading1 = document.createElement('h2');
+        heading1.textContent = 'Заголовок задания';
+        const paragraph1 = document.createElement('p');
+        paragraph1.textContent = 'Это пример параграфа, добавленного с помощью JavaScript.';
+        parent1.append(heading1, paragraph1);
+    </script>
+
+    <!-- 5.6 Практика по теме «Заполнение элементов» -->
+    <div class="content2"></div>
+    <script>
+        const parent2 = document.querySelector('.content2');
+
+        const heading2 = document.createElement('h2');
+        heading2.classList.add('heading-style');
+        heading2.textContent = 'Название статьи';
+
+        const paragraph2 = document.createElement('p');
+        paragraph2.classList.add('paragraph-style');
+        paragraph2.innerHTML = 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. <em>Porro repellat</em> temporibus, ex odit id dolor earum accusamus sequi impedit iure asperiores autem cupiditate aliquam tempora dicta velit fugit odio debitis!';
+
+        parent2.appendChild(heading2);
+        parent2.append(paragraph2);     
+    </script>
+    <script>
+        function greeting(age) {
+            if (age >= 18) {
+                alert("Добро пожаловать на наш взрослый сайт!");
+            } else {
+                alert("Извините, доступ только для совершеннолетних");
+            }
+        }
+
+        function processUserInput(callback) {
+            const age = prompt('Пожалуйста, введите ваш возраст');
+            callback(age);
+        }
+
+        processUserInput(greeting);
+    </script>
+    <!--  -->
+    <button class="myButton" onclick="increaseCounter()">Увеличить счётчик</button>
+    <p class="counter">Счётчик: 0</p>
+
+    <script>
+        let count = 0;
+
+        function increaseCounter() {
+            count++; // Увеличиваем счётчик на 1
+            document.querySelector('.counter').textContent = 'Счётчик: ' + count; // Обновляем текст на странице
+        }
+    </script>
+
+
+
+    <!-- 5.13 Практическая работа 
+   Задача 1. Динамическое создание и добавление элементов в корзину товаров-->
+    <h1>Каталог товаров</h1>
+    <ul id="product-list">
+        <li>
+            <span>Товар 1</span>
+            <button onclick="addToCart('Товар 1')">Добавить в корзину</button>
+        </li>
+        <li>
+            <span>Товар 2</span>
+            <button onclick="addToCart('Товар 2')">Добавить в корзину</button>
+        </li>
+        <li>
+            <span>Товар 3</span>
+            <button onclick="addToCart('Товар 3')">Добавить в корзину</button>
+        </li>
+    </ul>
+
+    <h2>Корзина</h2>
+    <ul id="cart">
+    </ul>
+    <script>
+        function addToCart(product) {
+            const cart = document.querySelector('#cart');
+
+            const listItem = document.createElement('li');
+
+            const textNode = document.createTextNode(product);
+
+            listItem.appendChild(textNode);
+
+            cart.appendChild(listItem);
+        }
+    </script>
+</body>
+
+</html>
